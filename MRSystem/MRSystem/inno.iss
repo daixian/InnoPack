@@ -1,16 +1,16 @@
-; ½Å±¾ÓÉ Inno Setup ½Å±¾Ïòµ¼ Éú³É£¡
-; ÓÐ¹Ø´´½¨ Inno Setup ½Å±¾ÎÄ¼þµÄÏêÏ¸×ÊÁÏÇë²éÔÄ°ïÖúÎÄµµ£¡
+ï»¿; è„šæœ¬ç”± Inno Setup è„šæœ¬å‘å¯¼ ç”Ÿæˆï¼
+; æœ‰å…³åˆ›å»º Inno Setup è„šæœ¬æ–‡ä»¶çš„è¯¦ç»†èµ„æ–™è¯·æŸ¥é˜…å¸®åŠ©æ–‡æ¡£ï¼
 
-#define MyAppName "GC2000Ò»Ìå»ú·þÎñ°²×°"
+#define MyAppName "GC2000ä¸€ä½“æœºæœåŠ¡å®‰è£…"
 #define MyAppVersion "1.0.0"
-#define MyAppPublisher "Î´À´Á¢Ìå"
+#define MyAppPublisher "æœªæ¥ç«‹ä½“"
 #define MyAppURL "http://www.f3dt.com/"
 #define MyAppIcon "f3dteaching.ico"
 
 [Setup]
-; ×¢: AppIdµÄÖµÎªµ¥¶À±êÊ¶¸ÃÓ¦ÓÃ³ÌÐò¡£
-; ²»ÒªÎªÆäËû°²×°³ÌÐòÊ¹ÓÃÏàÍ¬µÄAppIdÖµ¡£
-; (Éú³ÉÐÂµÄGUID£¬µã»÷ ¹¤¾ß|ÔÚIDEÖÐÉú³ÉGUID¡£)
+; æ³¨: AppIdçš„å€¼ä¸ºå•ç‹¬æ ‡è¯†è¯¥åº”ç”¨ç¨‹åºã€‚
+; ä¸è¦ä¸ºå…¶ä»–å®‰è£…ç¨‹åºä½¿ç”¨ç›¸åŒçš„AppIdå€¼ã€‚
+; (ç”Ÿæˆæ–°çš„GUIDï¼Œç‚¹å‡» å·¥å…·|åœ¨IDEä¸­ç”ŸæˆGUIDã€‚)
 AppId={{BE9170DA-A474-47F6-977C-6A70B5F7A788}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
@@ -18,7 +18,8 @@ AppVersion={#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
-AppUpdatesURL={#MyAppURL}DefaultDirName={pf64}\MRSystem
+AppUpdatesURL={#MyAppURL}
+DefaultDirName={pf64}\MRSystem
 ;DefaultGroupName= 
 DisableProgramGroupPage=yes
 ;OutputDir="C:\Users\xiekun.FUTURE3D\Desktop\inno test"
@@ -33,20 +34,26 @@ Name: "chinesesimp"; MessagesFile: "compiler:Languages\ChineseSimplified.isl"
 
 [Files]
 Source: "MRSystem\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-; ½«vcºÍ.net·Åµ½ÁÙÊ±Ä¿Â¼²¢ÅÐ¶ÏÊÇ·ñÐèÒª°²×°
+; å°†vcå’Œ.netæ”¾åˆ°ä¸´æ—¶ç›®å½•å¹¶åˆ¤æ–­æ˜¯å¦éœ€è¦å®‰è£…
 Source: "Runtime\vc_redist.x64.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall; AfterInstall: InstallVC_redist; Check: VCRedistNeedsInstall
 Source: "Runtime\NDP452-KB2901907-x86-x64-AllOS-ENU.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall; AfterInstall: InstallFramework; Check: not IsDotNetReallyInstalled
-; ×¢Òâ: ²»ÒªÔÚÈÎºÎ¹²ÏíÏµÍ³ÎÄ¼þÉÏÊ¹ÓÃ¡°Flags: ignoreversion¡±
+; æ³¨æ„: ä¸è¦åœ¨ä»»ä½•å…±äº«ç³»ç»Ÿæ–‡ä»¶ä¸Šä½¿ç”¨â€œFlags: ignoreversionâ€
 
-;[Icons];Name: "{app}\{#MyAppIcon}"; Filename: "{app}\{#MyAppIcon}"
+;[Icons]
+;Name: "{app}\{#MyAppIcon}"; Filename: "{app}\{#MyAppIcon}"
 
-[Run]Filename: "{app}\°²×°.bat"; Description: "install MRService"; Flags: postinstall shellexec runascurrentuser
+[Run]
+Filename: "{app}\å®‰è£….bat"; Description: "install MRService"; Flags: postinstall shellexec runascurrentuser
 
 [UninstallRun]
-Filename: "{app}\InstallUtil /u {app}\MRDevService.exe"; Flags: shellexecFilename: "{app}\Ð¶ÔØ.bat"; Flags: waituntilterminated shellexec runascurrentuser
-[UninstallDelete]
-;°´Ë³ÐòÉ¾³ý£¬ÒÔ·ÀÉ¾³ýºó³öÏÖÎÊÌâType: filesandordirs; Name: "{app}\log"
-Type: filesandordirs; Name: "{app}\update"Type: files; Name: "{app}\*"
+Filename: "{app}\InstallUtil /u {app}\MRDevService.exe"; Flags: shellexec
+Filename: "{app}\å¸è½½.bat"; Flags: waituntilterminated shellexec runascurrentuser
+
+[UninstallDelete]
+;æŒ‰é¡ºåºåˆ é™¤ï¼Œä»¥é˜²åˆ é™¤åŽå‡ºçŽ°é—®é¢˜
+Type: filesandordirs; Name: "{app}\log"
+Type: filesandordirs; Name: "{app}\update"
+Type: files; Name: "{app}\*"
 Type: filesandordirs; Name: "{app}"
 
 [Code]
@@ -61,13 +68,13 @@ var
   ResultCode: Integer;
 begin
   StatusText := WizardForm.StatusLabel.Caption;
-  WizardForm.StatusLabel.Caption := '°²×°VC++ 2015ÖÐ....';
+  WizardForm.StatusLabel.Caption := 'å®‰è£…VC++ 2015ä¸­....';
   WizardForm.ProgressGauge.Style := npbstMarquee;
   try
     if not Exec(ExpandConstant('{tmp}\vc_redist.x64.exe'), '/q /norestart', '', SW_SHOW, ewWaitUntilTerminated, ResultCode) then
     begin
       { you can interact with the user that the installation failed }
-      MsgBox('VC++ 2015 °²×°Ê§°Ü´úÂë: ' + IntToStr(ResultCode) + '.', mbError, MB_OK);
+      MsgBox('VC++ 2015 å®‰è£…å¤±è´¥ä»£ç : ' + IntToStr(ResultCode) + '.', mbError, MB_OK);
     end;
   finally
     WizardForm.StatusLabel.Caption := StatusText;
@@ -81,13 +88,13 @@ var
   ResultCode: Integer;
 begin
   StatusText := WizardForm.StatusLabel.Caption;
-  WizardForm.StatusLabel.Caption := '°²×°.Net Framework v4.5.2ÖÐ....';
+  WizardForm.StatusLabel.Caption := 'å®‰è£….Net Framework v4.5.2ä¸­....';
   WizardForm.ProgressGauge.Style := npbstMarquee;
   try
     if not Exec(ExpandConstant('{tmp}\NDP452-KB2901907-x86-x64-AllOS-ENU.exe'), '/q /norestart', '', SW_SHOW, ewWaitUntilTerminated, ResultCode) then
     begin
       { you can interact with the user that the installation failed }
-      MsgBox('.Net Framework v4.5.2 °²×°Ê§°Ü´úÂë: ' + IntToStr(ResultCode) + '.', mbError, MB_OK);
+      MsgBox('.Net Framework v4.5.2 å®‰è£…å¤±è´¥ä»£ç : ' + IntToStr(ResultCode) + '.', mbError, MB_OK);
     end;
   finally
     WizardForm.StatusLabel.Caption := StatusText;
@@ -194,4 +201,5 @@ begin
   Result := Success and (InstallFlag = 1) and (ServiceCount >= ServicePack);
 end;
 
-function IsDotNetReallyInstalled(): Boolean; begin result := IsDotNetInstalled(DotNet_v45, 0); end;
+function IsDotNetReallyInstalled(): Boolean; begin result := IsDotNetInstalled(DotNet_v45, 0); end;
+
