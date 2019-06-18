@@ -1,0 +1,6 @@
+{
+    "files.exclude": {
+        "**/Inno*": true,
+        "**/MR*": true
+    }
+}
