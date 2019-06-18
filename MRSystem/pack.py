@@ -25,8 +25,8 @@ def extract_zip(zfile_path, unzip_dir):
         #     zfile.extractall(path=unzip_dir) 直接all会中文乱码
         with zipfile.ZipFile(zfile_path, 'r') as zf:
             for fn in zf.namelist():
-                right_fn = unzip_dir + os.sep + \
-                    fn.encode('cp437').decode('gbk')  # 将文件名正确编码
+                right_fn = os.path.join(unzip_dir, fn.encode(
+                    'cp437').decode('gbk'))  # 将文件名正确编码
                 if (right_fn.endswith('/')):
                     if os.path.exists(right_fn):
                         shutil.rmtree(right_fn)
@@ -124,11 +124,9 @@ def run_inno_script():
     # 当前脚本文件夹路径
     curPyDirPath = os.path.abspath(os.path.dirname(curPyPath))
     # inno程序路径
-    innoPath = curPyDirPath + os.path.sep + \
-        "Inno Setup 5" + os.path.sep + "ISCC.exe"
+    innoPath = os.path.join(curPyDirPath, "Inno Setup 5", "ISCC.exe")
     # inno脚本路径
-    innoScriptPath = curPyDirPath + os.path.sep + \
-        "MRSystem" + os.path.sep + "inno.iss"
+    innoScriptPath = os.path.join(curPyDirPath, "MRSystem", "inno.iss")
     # 命令
     cmd = '"%s" "%s"' % (innoPath, innoScriptPath)
 
@@ -140,34 +138,33 @@ def main(argv):
     curPyPath = os.path.abspath(__file__)
     # 当前脚本文件夹路径
     curPyDirPath = os.path.abspath(os.path.dirname(curPyPath))
-    downloadFile = curPyDirPath + os.path.sep + "v1.0.0.0.zip"
+    downloadFile = os.path.join(curPyDirPath, "v1.0.0.0.zip")
     # 下载要打成安装包的文件
     download_with_cache(
         "http://mr.xuexuesoft.com:8010/soft/MRSystem/v1.0.0.0.zip", downloadFile)
     # 解压缩
     extractDir = os.path.join(curPyDirPath, "MRSystem")
     extract_zip(downloadFile, extractDir)
-    targetFilesDir = curPyDirPath + os.path.sep + \
-        "MRSystem" + os.path.sep + "MRSystem"
+    targetFilesDir = os.path.join(curPyDirPath, "MRSystem", "MRSystem")
     if os.path.exists(targetFilesDir):
         shutil.rmtree(targetFilesDir)
     # 里面的文件夹是MRSystem\v1.0.0.0
     os.renames(extractDir + os.path.sep + "v1.0.0.0", targetFilesDir)
     # 下载inno软件
-    innoZipFile = curPyDirPath + os.path.sep + "Inno Setup 5.zip"
+    innoZipFile = os.path.join(curPyDirPath, "Inno Setup 5.zip")
     download_with_cache(
         "https://github.com/daixian/daixian.github.io/raw/master/assets/files/inno/Inno%20Setup%205.zip", innoZipFile)
     if os.path.exists(curPyDirPath + os.path.sep + "Inno Setup 5"):
         shutil.rmtree(curPyDirPath + os.path.sep + "Inno Setup 5")
     extract_zip(innoZipFile, curPyDirPath)
     # 下载.net
-    dlFile = curPyDirPath + os.path.sep + "MRSystem" + os.path.sep + \
-        "Runtime" + os.path.sep + "NDP452-KB2901907-x86-x64-AllOS-ENU.exe"
+    dlFile = os.path.join(curPyDirPath, "MRSystem", "Runtime",
+                          "NDP452-KB2901907-x86-x64-AllOS-ENU.exe")
     download_with_cache(
         "https://github.com/daixian/daixian.github.io/raw/master/assets/files/inno/Runtime/NDP452-KB2901907-x86-x64-AllOS-ENU.exe", dlFile)
     # 下载vcrt2015
-    dlFile = curPyDirPath + os.path.sep + "MRSystem" + os.path.sep + \
-        "Runtime" + os.path.sep + "vc_redist.x64.exe"
+    dlFile = os.path.join(curPyDirPath, "MRSystem",
+                          "Runtime", "vc_redist.x64.exe")
     download_with_cache(
         "https://github.com/daixian/daixian.github.io/raw/master/assets/files/inno/Runtime/vc_redist.x64.exe", dlFile)
     # 运行打包脚本
