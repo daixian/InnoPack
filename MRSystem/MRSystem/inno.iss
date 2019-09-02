@@ -6,6 +6,8 @@
 #define MyAppPublisher "未来立体"
 #define MyAppURL "http://www.f3dt.com/"
 #define MyAppIcon "f3dteaching.ico"
+#define DesktopIcon "F-AR.exe"
+#define DesktopIconName "增强现实互动软件（F-AR）"
 
 [Setup]
 ; 注: AppId的值为单独标识该应用程序。
@@ -39,8 +41,8 @@ Source: "Runtime\vc_redist.x64.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall
 Source: "Runtime\NDP452-KB2901907-x86-x64-AllOS-ENU.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall; AfterInstall: InstallFramework; Check: not IsDotNetReallyInstalled
 ; 注意: 不要在任何共享系统文件上使用“Flags: ignoreversion”
 
-;[Icons]
-;Name: "{app}\{#MyAppIcon}"; Filename: "{app}\{#MyAppIcon}"
+[Icons]
+Name: "{commondesktop}\{#DesktopIconName}"; Filename: "{app}\{#DesktopIcon}"; Flags: createonlyiffileexists
 
 [Run]
 Filename: "{app}\安装.bat"; Description: "install MRService"; Flags: postinstall shellexec runascurrentuser
