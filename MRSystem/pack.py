@@ -153,7 +153,7 @@ def main(argv):
     # 下载inno软件
     innoZipFile = os.path.join(curPyDirPath, "Inno Setup 5.zip")
     download_with_cache(
-        "https://github.com/daixian/daixian.github.io/raw/master/assets/files/inno/Inno%20Setup%205.zip", innoZipFile)
+        "https://github.com/daixian/InnoPack/raw/master/assets/files/inno/Inno%20Setup%205.zip", innoZipFile)
     if os.path.exists(curPyDirPath + os.path.sep + "Inno Setup 5"):
         shutil.rmtree(curPyDirPath + os.path.sep + "Inno Setup 5")
     extract_zip(innoZipFile, curPyDirPath)
@@ -161,12 +161,12 @@ def main(argv):
     dlFile = os.path.join(curPyDirPath, "MRSystem", "Runtime",
                           "NDP452-KB2901907-x86-x64-AllOS-ENU.exe")
     download_with_cache(
-        "https://github.com/daixian/daixian.github.io/raw/master/assets/files/inno/Runtime/NDP452-KB2901907-x86-x64-AllOS-ENU.exe", dlFile)
+        "https://github.com/daixian/InnoPack/raw/master/assets/files/inno/Runtime/NDP452-KB2901907-x86-x64-AllOS-ENU.exe", dlFile)
     # 下载vcrt2015
     dlFile = os.path.join(curPyDirPath, "MRSystem",
                           "Runtime", "vc_redist.x64.exe")
     download_with_cache(
-        "https://github.com/daixian/daixian.github.io/raw/master/assets/files/inno/Runtime/vc_redist.x64.exe", dlFile)
+        "https://github.com/daixian/InnoPack/raw/master/assets/files/inno/Runtime/vc_redist.x64.exe", dlFile)
     # 运行打包脚本
     run_inno_script()
 
